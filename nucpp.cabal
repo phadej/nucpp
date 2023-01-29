@@ -1,0 +1,111 @@
+cabal-version:      2.4
+name:               nucpp
+version:            0
+synopsis:           Not standard not-C preprocessor
+category:           Development
+description:
+  @nucpp@ is a C-preprocessor like preprocessor.
+  However, it is not and tries not to be standard compliant.
+
+author:             Oleg Grenrus <oleg.grenrus>
+maintainer:         Oleg Grenrus <oleg.grenrus>
+homepage:           https://github.com/phadej/nucpp
+bug-reports:        https://github.com/phadej/nucpp/issues
+license:            BSD-3-Clause
+license-file:       LICENSE
+tested-with:
+  GHC ==8.4.4
+   || ==8.6.5
+   || ==8.8.4
+   || ==8.10.7
+   || ==9.0.2
+   || ==9.2.5
+   || ==9.4.4
+
+-- *.h are used as includes
+-- *.i files are test inputs
+-- *.o files are expected outputs
+extra-source-files:
+  Changelog.md
+  fixtures/*.expr
+  fixtures/*.h
+  fixtures/*.i
+  fixtures/*.o
+
+source-repository head
+  type:     git
+  location: https://github.com/phadej/nucpp.git
+
+common common
+  default-language:   Haskell2010
+  default-extensions:
+    ConstraintKinds
+    DataKinds
+    DeriveGeneric
+    FlexibleInstances
+    FunctionalDependencies
+    GADTs
+    KindSignatures
+    OverloadedLabels
+    PatternSynonyms
+    ScopedTypeVariables
+    StandaloneDeriving
+    TypeApplications
+    TypeFamilies
+    UndecidableInstances
+    ViewPatterns
+
+  ghc-options:        -Wall
+
+library
+  import:          common
+  hs-source-dirs:  src
+  exposed-modules:
+    NuCPP
+    NuCPP.Args
+    NuCPP.SnocList
+
+  other-modules:
+    NuCPP.Imports
+    NuCPP.Optics
+
+  -- we depend only on GHC boot libraries
+  build-depends:
+    , base        >=4.11      && <4.18
+    , containers  ^>=0.5.11.0 || ^>=0.6.0.1
+    , directory   ^>=1.3.1.5
+    , filepath    ^>=1.4.2
+
+  -- TODO: currently nucpp is just a frontend for cpphs
+  build-depends:   cpphs ^>=1.20.9.1
+
+executable nucpp
+  default-language: Haskell2010
+  main-is:          nucpp.hs
+  hs-source-dirs:   exe-nucpp
+  build-depends:
+    , base
+    , nucpp
+
+test-suite nucpp-tests
+  import:           common
+  default-language: Haskell2010
+  type:             exitcode-stdio-1.0
+  main-is:          nucpp-tests.hs
+  hs-source-dirs:   tests
+  other-modules:
+    NuCPP.Test.Args
+    NuCPP.Test.Golden
+
+  -- library dependencies
+  build-depends:
+    , base
+    , filepath
+    , nucpp
+
+  -- extra test dependencies
+  build-depends:
+    , tasty
+    , tasty-golden
+    , tasty-hunit
+    , tree-diff     ^>=0.3

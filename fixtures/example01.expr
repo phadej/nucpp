@@ -1,0 +1,35 @@
+Args {
+  argsOpts =
+  Opts {
+    optsIncludeDirs =
+    [
+      "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build",
+      "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build",
+      "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build/autogen",
+      "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build/global-autogen",
+      "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build",
+      "/opt/ghc/8.6.5/lib/ghc-8.6.5/base-4.12.0.0/include",
+      "/opt/ghc/8.6.5/lib/ghc-8.6.5/integer-gmp-1.0.2.0/include",
+      "/opt/ghc/8.6.5/lib/ghc-8.6.5/include"],
+    optsWerror = False},
+  argsDefines = Map.fromList
+    [
+      _×_ "SPLITMIX_INIT_C" "1",
+      _×_
+        "__GLASGOW_HASKELL_TH__"
+        "1",
+      _×_ "__SSE2__" "1",
+      _×_ "__SSE__" "1",
+      _×_ "linux_BUILD_OS" "1",
+      _×_ "linux_HOST_OS" "1",
+      _×_ "x86_64_BUILD_ARCH" "1",
+      _×_ "x86_64_HOST_ARCH" "1"],
+  argsIncludes =
+  [
+    "/code/public-haskell/splitmix/dist-newstyle/build/x86_64-linux/ghc-8.6.5/splitmix-0.1.0.4/build/autogen/cabal_macros.h",
+    "/opt/ghc/8.6.5/lib/ghc-8.6.5/include/ghcversion.h",
+    "/tmp/ghc51967_0/ghc_2.h"],
+  argsInput = Just
+    "src/System/Random/SplitMix.hs",
+  argsOutput = Just
+    "/tmp/ghc51967_0/ghc_1.hscpp"}

@@ -1,0 +1,10 @@
+
+
+
+
+
+
+-- | Useful combination of 'sbool' and 'eqToRefl'
+--
+-- @since 0.1.2.0
+sboolEqRefl :: forall  (a :: k) (b :: k). SBoolI (a == b) => Maybe (a :~: b)
